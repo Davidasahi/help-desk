@@ -1,7 +1,7 @@
 import React from 'react';
 
 const list = () => {
-  return <div>list</div>;
+  return <div>Admin list</div>;
 };
 
 export default list;
