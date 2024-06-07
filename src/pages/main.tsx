@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 
-const main = () => {
-  // interface MyEvent {
-  //   username: string;
-  //   email: string;
-  //   discription: string;
-  //   errors: any;
-  // }
+const Main: React.FC = () => {
+  interface formData {
+    username: string;
+    email: string;
+    discription: string;
+    errors: {
+      username?: string;
+      email?: string;
+    };
+  }
 
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     discription: '',
-    errors: {}
+    errors: {},
   });
 
   //check the handle changed or not
-  const handleChange = (event) => {
-    const { username, email } = event.target;
-    setFormData((prevState) => ({ ...prevState, [username]: value }));
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   //check the form fields are empty or not
@@ -39,7 +42,7 @@ const main = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!validateForm) {
       console.log(formData);
@@ -86,4 +89,4 @@ const main = () => {
   );
 };
 
-export default main;
+export default Main;
